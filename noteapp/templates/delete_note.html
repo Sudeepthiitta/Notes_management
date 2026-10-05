@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+
+Delete Note | NoteNest
+
+{% endblock %}
+
+
+{% block content %}
+
+
+<section class="delete-page">
+
+
+    <div class="delete-card">
+
+
+        <div class="warning-icon">
+
+            ⚠️
+
+        </div>
+
+
+        <h1>
+
+            Delete Note?
+
+        </h1>
+
+
+        <p>
+
+            Are you sure you want to delete
+
+            <strong>
+                "{{ note.title }}"
+            </strong>?
+
+        </p>
+
+
+        <p class="warning-text">
+
+            This action cannot be undone.
+
+        </p>
+
+
+
+        <!-- DELETE FORM -->
+
+        <form method="POST">
+
+
+            {% csrf_token %}
+
+
+            <div class="delete-actions">
+
+
+                <a
+                    href="{% url 'note_list' %}"
+                    class="cancel-btn"
+                >
+
+                    Cancel
+
+                </a>
+
+
+                <button
+                    type="submit"
+                    class="confirm-delete-btn"
+                >
+
+                    🗑 Delete Note
+
+                </button>
+
+
+            </div>
+
+
+        </form>
+
+
+    </div>
+
+
+</section>
+
+
+{% endblock %}

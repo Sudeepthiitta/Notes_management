@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+{{ note.title }} | NoteNest
+
+{% endblock %}
+
+
+{% block content %}
+
+
+<section class="view-page">
+
+
+    <div class="view-card">
+
+
+        <!-- TOP -->
+
+        <div class="view-top">
+
+
+            <span class="note-label">
+
+                NOTE
+
+            </span>
+
+
+            <span class="note-date">
+
+                {{ note.created_at|date:"d M Y, h:i A" }}
+
+            </span>
+
+
+        </div>
+
+
+
+        <!-- TITLE -->
+
+        <h1>
+
+            {{ note.title }}
+
+        </h1>
+
+
+
+        <!-- CONTENT -->
+
+        <div class="view-content">
+
+            {{ note.content|linebreaks }}
+
+        </div>
+
+
+
+        <!-- UPDATED -->
+
+        <div class="updated-info">
+
+            Last updated:
+
+            {{ note.updated_at|date:"d M Y, h:i A" }}
+
+        </div>
+
+
+
+        <!-- ACTIONS -->
+
+        <div class="view-actions">
+
+
+            <a
+                href="{% url 'note_list' %}"
+                class="cancel-btn"
+            >
+
+                ← Back
+
+            </a>
+
+
+            <a
+                href="{% url 'edit_note' note.id %}"
+                class="edit-btn large-btn"
+            >
+
+                ✏️ Update
+
+            </a>
+
+
+            <a
+                href="{% url 'delete_note' note.id %}"
+                class="delete-btn large-btn"
+            >
+
+                🗑 Delete
+
+            </a>
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+{% endblock %}

@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ category }} Notes | NoteNest
+{% endblock %}
+
+{% block content %}
+
+<section class="notes-page">
+
+    <!-- PAGE HEADER -->
+
+    <div class="page-header">
+
+        <div>
+            <h1>{{ category }} Notes</h1>
+
+            <p>
+                All your {{ category }} programming notes in one place.
+            </p>
+        </div>
+
+        <a href="{% url 'add_note' %}" class="primary-btn">
+            + Add Note
+        </a>
+
+    </div>
+
+
+    <!-- BACK BUTTON -->
+
+    <div style="margin-bottom: 25px;">
+
+        <a href="{% url 'home' %}" class="cancel-btn">
+            ← Back to Categories
+        </a>
+
+    </div>
+
+
+    <!-- NOTES -->
+
+    <div class="notes-container">
+
+        {% for note in notes %}
+
+        <div class="note-card">
+
+            <div class="note-top">
+
+                <div>
+                    <h2>{{ note.title }}</h2>
+
+                    <span class="category-label">
+                        {{ note.category }}
+                    </span>
+                </div>
+
+                <span class="note-date">
+                    {{ note.created_at|date:"d M Y" }}
+                </span>
+
+            </div>
+
+
+            <p class="note-content">
+                {{ note.content }}
+            </p>
+
+
+            <div class="note-actions">
+
+                <a
+                    href="{% url 'view_note' note.id %}"
+                    class="view-btn"
+                >
+                    👁 View
+                </a>
+
+                <a
+                    href="{% url 'edit_note' note.id %}"
+                    class="edit-btn"
+                >
+                    ✏️ Update
+                </a>
+
+                <a
+                    href="{% url 'delete_note' note.id %}"
+                    class="delete-btn"
+                >
+                    🗑 Delete
+                </a>
+
+            </div>
+
+        </div>
+
+        {% empty %}
+
+        <!-- NO NOTES -->
+
+        <div class="empty-state">
+
+            <div class="empty-icon">
+                📒
+            </div>
+
+            <h2>
+                No {{ category }} Notes Yet
+            </h2>
+
+            <p>
+                You haven't created any {{ category }} notes yet.
+            </p>
+
+            <a
+                href="{% url 'add_note' %}"
+                class="primary-btn"
+            >
+                Create {{ category }} Note
+            </a>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+{% endblock %}

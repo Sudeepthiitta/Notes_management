@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+
+{% block title %}
+All Notes | NoteNest
+{% endblock %}
+
+{% block content %}
+
+<section class="notes-page">
+
+    <div class="page-header">
+
+        <div>
+            <h1>All Notes</h1>
+
+            <p>
+                Choose a category to view your notes.
+            </p>
+        </div>
+
+        <a href="{% url 'add_note' %}" class="primary-btn">
+            + Add Note
+        </a>
+
+    </div>
+
+
+    <!-- SEARCH -->
+
+    <div class="search-box">
+
+        <span>🔍</span>
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search categories..."
+        >
+
+    </div>
+
+
+    <!-- CATEGORY LIST -->
+
+    <div class="all-categories">
+
+        {% for category in categories %}
+
+        <div class="all-category-item">
+
+            <div class="category-name">
+
+                <span class="category-big-icon">
+
+                    {% if category.name == "Python" %}
+                        🐍
+                    {% elif category.name == "Java" %}
+                        ☕
+                    {% elif category.name == "HTML" %}
+                        🌐
+                    {% elif category.name == "CSS" %}
+                        🎨
+                    {% elif category.name == "JavaScript" %}
+                        ⚡
+                    {% elif category.name == "SQL" %}
+                        🗄️
+                    {% else %}
+                        💻
+                    {% endif %}
+
+                </span>
+
+                <div>
+
+                    <h2>
+                        {{ category.name }}
+                    </h2>
+
+                    <p>
+                        {{ category.name }} programming notes
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <a
+                href="{% url 'category_notes' category.name %}"
+                class="view-category-btn"
+            >
+                View {{ category.name }} →
+            </a>
+
+        </div>
+
+        {% empty %}
+
+        <div class="empty-state">
+
+            <div class="empty-icon">
+                📒
+            </div>
+
+            <h2>
+                No Categories Yet
+            </h2>
+
+            <p>
+                Add a programming language first.
+            </p>
+
+            <a
+                href="{% url 'add_category' %}"
+                class="primary-btn"
+            >
+                + Add Language
+            </a>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+{% endblock %}

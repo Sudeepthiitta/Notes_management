@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Add Language | NoteNest
+{% endblock %}
+
+
+{% block content %}
+
+<section class="form-page">
+
+    <div class="form-card">
+
+        <div class="form-header">
+
+            <div class="form-icon">
+                💻
+            </div>
+
+            <h1>
+                Add New Language
+            </h1>
+
+            <p>
+                Add a new programming language to your notes.
+            </p>
+
+        </div>
+
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+
+            <div class="form-group">
+
+                <label for="name">
+                    Programming Language
+                </label>
+
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="Example: C++, Django, React"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-buttons">
+
+                <a
+                    href="{% url 'home' %}"
+                    class="cancel-btn"
+                >
+                    Cancel
+                </a>
+
+
+                <button
+                    type="submit"
+                    class="primary-btn"
+                >
+                    Add Language
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</section>
+
+{% endblock %}

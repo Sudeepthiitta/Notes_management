@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Add Note | NoteNest
+{% endblock %}
+
+
+{% block content %}
+
+<section class="form-page">
+
+    <div class="form-card">
+
+        <div class="form-header">
+
+            <div class="form-icon">
+                📝
+            </div>
+
+            <h1>Create New Note</h1>
+
+            <p>
+                Add your thoughts, ideas or important information.
+            </p>
+
+        </div>
+
+
+        <!-- FORM -->
+
+        <form method="POST" onsubmit="return validateNoteForm();">
+
+            {% csrf_token %}
+
+
+            <!-- TITLE -->
+
+            <div class="form-group">
+
+                <label for="title">
+                    Note Title
+                </label>
+
+                <input
+                    type="text"
+                    id="title"
+                    name="title"
+                    placeholder="Enter note title"
+                    required
+                >
+
+            </div>
+
+
+            <!-- CATEGORY -->
+
+            <div class="form-group">
+
+                <label for="category">
+                    Category
+                </label>
+
+                <select
+                    id="category"
+                    name="category"
+                    required
+                >
+
+                    <option value="">
+                        Select Category
+                    </option>
+
+                    {% for category in categories %}
+
+                    <option value="{{ category.name }}">
+                        {{ category.name }}
+                    </option>
+
+                    {% endfor %}
+
+                </select>
+
+            </div>
+
+
+            <!-- CONTENT -->
+
+            <div class="form-group">
+
+                <label for="content">
+                    Note Content
+                </label>
+
+                <textarea
+                    id="content"
+                    name="content"
+                    rows="10"
+                    placeholder="Write your note here..."
+                    required
+                ></textarea>
+
+                <div class="character-count">
+
+                    <span id="charCount">0</span>
+
+                    characters
+
+                </div>
+
+            </div>
+
+
+            <!-- BUTTONS -->
+
+            <div class="form-buttons">
+
+                <a
+                    href="{% url 'note_list' %}"
+                    class="cancel-btn"
+                >
+                    Cancel
+                </a>
+
+                <button
+                    type="submit"
+                    class="primary-btn"
+                >
+                    Save Note
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</section>
+
+{% endblock %}

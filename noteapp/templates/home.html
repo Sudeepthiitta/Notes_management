@@ -1,0 +1,238 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Home | NoteNest
+{% endblock %}
+
+
+{% block content %}
+
+
+<!-- HERO SECTION -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="badge">
+            Simple • Smart • Organized
+        </div>
+
+        <h1>
+            Organize your thoughts<br>
+            with <span>NoteNest.</span>
+        </h1>
+
+        <p>
+            Create, manage and organize your programming
+            notes easily in one place.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="{% url 'add_note' %}" class="primary-btn">
+                + Create Note
+            </a>
+
+            <a href="{% url 'note_list' %}" class="secondary-btn">
+                View All Notes
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- CATEGORY SECTION -->
+
+<section class="categories">
+
+    <div class="section-heading">
+
+        <h2>
+            Browse by Category
+        </h2>
+
+        <p>
+            Choose a programming language to view your notes.
+        </p>
+
+    </div>
+
+
+    <div class="category-container">
+
+
+        <!-- DYNAMIC CATEGORIES -->
+
+        {% for category in categories %}
+
+        <a
+            href="{% url 'category_notes' category.name %}"
+            class="category-card"
+        >
+
+            <div class="category-icon">
+
+                {% if category.name == "Python" %}
+                    🐍
+
+                {% elif category.name == "Java" %}
+                    ☕
+
+                {% elif category.name == "HTML" %}
+                    🌐
+
+                {% elif category.name == "CSS" %}
+                    🎨
+
+                {% elif category.name == "JavaScript" %}
+                    ⚡
+
+                {% elif category.name == "SQL" %}
+                    🗄️
+
+                {% else %}
+                    💻
+
+                {% endif %}
+
+            </div>
+
+
+            <h3>
+                {{ category.name }}
+            </h3>
+
+
+            <p>
+                {{ category.name }} programming notes
+            </p>
+
+        </a>
+
+        {% endfor %}
+
+
+
+        <!-- ADD LANGUAGE CARD -->
+
+        <a
+            href="{% url 'add_category' %}"
+            class="category-card add-category-card"
+        >
+
+            <div class="category-icon">
+                ➕
+            </div>
+
+            <h3>
+                Add Language
+            </h3>
+
+            <p>
+                Create a new programming category
+            </p>
+
+        </a>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- FEATURES -->
+
+<section class="features">
+
+    <h2>
+        Everything You Need
+    </h2>
+
+
+    <div class="feature-container">
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                📝
+            </div>
+
+            <h3>
+                Create Notes
+            </h3>
+
+            <p>
+                Create and save your important programming
+                thoughts and ideas.
+            </p>
+
+        </div>
+
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                👁️
+            </div>
+
+            <h3>
+                View Notes
+            </h3>
+
+            <p>
+                Read your saved notes whenever you need them.
+            </p>
+
+        </div>
+
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                ✏️
+            </div>
+
+            <h3>
+                Update Notes
+            </h3>
+
+            <p>
+                Edit and update your notes whenever required.
+            </p>
+
+        </div>
+
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                🗑️
+            </div>
+
+            <h3>
+                Delete Notes
+            </h3>
+
+            <p>
+                Remove notes that you no longer need.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+{% endblock %}

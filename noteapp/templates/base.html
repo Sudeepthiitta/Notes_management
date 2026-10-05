@@ -1,0 +1,98 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        {% block title %}
+        NoteNest
+        {% endblock %}
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{% static 'style.css' %}"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- NAVBAR -->
+
+<header class="navbar">
+
+    <div class="logo">
+
+        📝 NoteNest
+
+    </div>
+
+
+    <nav>
+
+        <a href="{% url 'home' %}">
+            Home
+        </a>
+
+
+        <a href="{% url 'note_list' %}">
+            My Notes
+        </a>
+
+
+        <a
+            href="{% url 'add_note' %}"
+            class="nav-btn"
+        >
+            + Add Note
+        </a>
+
+    </nav>
+
+</header>
+
+
+<!-- MAIN CONTENT -->
+
+<main>
+
+    {% block content %}
+
+    {% endblock %}
+
+</main>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <p>
+        © 2026 NoteNest |
+        Note Management System
+    </p>
+
+</footer>
+
+
+<script
+    src="{% static 'script.js' %}">
+</script>
+
+
+</body>
+
+</html>
